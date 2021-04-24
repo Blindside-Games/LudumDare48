@@ -18,7 +18,7 @@ public class AttackController : MonoBehaviour
     public GameObject BulletPrefab;
     private GameObject muzzle;
 
-    public int bulletTravelSpeed = 10;
+    public int bulletTravelSpeed = 100;
 
     private List<GameObject> bulletPool = new List<GameObject>();
 
@@ -81,10 +81,23 @@ public class AttackController : MonoBehaviour
 
     private void FireBullet()
     {
-        var bullet = Instantiate(BulletPrefab, muzzle.transform.position, Quaternion.identity) as GameObject;
+        var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
-        bulletPool.Add(bullet);
+        if (Physics.Raycast(ray, out var hit, 200, 1 << 6))
+        {
+            var targetTransform = hit.transform.parent;
 
-        bullet.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, bulletTravelSpeed);
+            Debug.Log($"hit {targetTransform.name}");
+
+            var attackable = targetTransform.gameObject.GetComponent<IAttackable>();
+
+            if (attackable == null)
+                return;
+
+            attackable.Attack(new AttackInfo
+            {
+                Damage = 20
+            });
+        }
     }
 }

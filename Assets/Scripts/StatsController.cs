@@ -12,11 +12,6 @@ public class StatsController : MonoBehaviour, IAttackable
     public void Attack(AttackInfo attackInfo)
     {
         currentHealth -= attackInfo.Damage;
-
-        if (currentHealth <= 0)
-        {
-            isDead = true;
-        }
     }
 
     // Start is called before the first frame update
@@ -28,6 +23,9 @@ public class StatsController : MonoBehaviour, IAttackable
     // Update is called once per frame
     void Update()
     {
-
+        if (currentHealth <= 0)
+        {
+            Destroy(this);
+        }
     }
 }
