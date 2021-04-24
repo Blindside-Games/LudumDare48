@@ -35,6 +35,6 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add .
+          git add docs
           git commit -m "new build"
           git push origin builds
