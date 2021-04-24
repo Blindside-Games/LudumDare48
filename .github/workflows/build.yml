@@ -29,6 +29,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
       - name: rename folder
         run: |
+          ls
           mv Build-${{ matrix.targetPlatform }} docs
       - name: setup git config
         run: |
