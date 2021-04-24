@@ -19,17 +19,17 @@ public class DepthMeasurement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         var fromPosition = transform.position;
         var toPosition = floor.transform.position;
         var direction = toPosition - fromPosition;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit))
+        if (Physics.Raycast(transform.position, -transform.up, out hit))
         {
-            depth = hit.distance;
-            Debug.Log("Hit");
+            if (hit.collider != null && hit.collider.tag.Equals("Terrain"))
+            {
+                depth = hit.distance;
+            }
         }
 
         label.text = $"Depth: {depth.ToString("n2")}m";

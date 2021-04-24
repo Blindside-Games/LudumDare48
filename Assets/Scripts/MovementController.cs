@@ -9,10 +9,13 @@ public class MovementController : MonoBehaviour
 
     private float yAxis = 0;
 
+    private GameObject propeller;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        propeller = transform.RecursiveFind("Propeller");
     }
 
     void FixedUpdate()
@@ -28,18 +31,15 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         var input = new Vector3(Input.GetAxis("Horizontal"), yAxis, Input.GetAxis("Vertical"));
 
         Vector3 direction = Vector3.zero;
         switch (Input.GetAxis("Horizontal"))
         {
             case 1:
-                Debug.Log("d");
                 direction = transform.right;
                 break;
             case -1:
-                Debug.Log("a");
                 direction = -transform.right;
                 break;
 
@@ -49,15 +49,18 @@ public class MovementController : MonoBehaviour
         switch (Input.GetAxis("Vertical"))
         {
             case 1:
-                Debug.Log("w");
-                direction = transform.up;
+                direction = transform.forward;
                 break;
             case -1:
-                Debug.Log("s");
-                direction = -transform.up;
+                direction = -transform.forward;
                 break;
 
             default: break;
+        }
+
+        if (direction.magnitude > 0)
+        {
+            propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
         }
 
         rigidBody.position += direction * Time.deltaTime * speed;
