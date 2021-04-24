@@ -85,7 +85,7 @@ public class AttackController : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, 200, 1 << 6))
         {
-            var targetTransform = hit.transform.parent;
+            var targetTransform = hit.transform;
 
             Debug.Log($"hit {targetTransform.name}");
 

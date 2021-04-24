@@ -17,6 +17,7 @@ public class EnemyTerritory : MonoBehaviour
 
         GetEnemiesInTerritory();
         GetNavigationPoints();
+
         StartPatrols();
     }
 
@@ -28,12 +29,27 @@ public class EnemyTerritory : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.transform.name} enter");
+        if (other.tag.Equals("Player"))
+        {
+            Debug.Log($"player entered");
+
+            enemies.ForEach((e) =>
+            {
+                e.GetComponent<BasicEnemy>().SetPursueTarget(other.gameObject);
+            });
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"{other.transform.name} exit");
+        if (other.tag.Equals("Player"))
+        {
+            Debug.Log($"{other.transform.name} exit");
+            enemies.ForEach((e) =>
+            {
+                e.GetComponent<BasicEnemy>().BeginPatrol();
+            });
+        }
     }
 
     private void GetEnemiesInTerritory()
