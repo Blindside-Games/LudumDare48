@@ -30,7 +30,10 @@ jobs:
       - name: copy files
         run: |
           rm -r docs
-          cp -R build/WebGL docs
+          cp -RT build/WebGL docs
+
+          cd docs 
+          ls 
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
