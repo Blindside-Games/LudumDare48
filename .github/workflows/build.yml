@@ -30,7 +30,7 @@ jobs:
       - name: copy files
         run: |
           rm -r docs
-          cp -RT build/WebGL docs
+          cp -R build/WebGL/. docs
 
           cd docs 
           ls 
