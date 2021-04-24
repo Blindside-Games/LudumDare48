@@ -27,6 +27,9 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
+      - name: rename folder
+        run: |
+          mv Build-${{ matrix.targetPlatform }} docs
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
@@ -38,3 +41,5 @@ jobs:
           git add docs
           git commit -m "new build"
           git push origin builds
+
+           
