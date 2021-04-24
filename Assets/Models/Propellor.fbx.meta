@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38c1ff7065bf17b46b280fc780179806
+guid: 2e25c1b7f323e4f139b7cf810a164060
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Dark_Grey_Trim
-    second: {fileID: 2100000, guid: 0793ae47576ae49edb4a97be492956ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Light_grey
-    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Trim_Red
+      name: Accent_Red
     second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Window7
-    second: {fileID: 2100000, guid: b966639d6e31843b4bfc5825da62d10c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
