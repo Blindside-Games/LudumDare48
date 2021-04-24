@@ -27,10 +27,10 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - name: rename folder
+      - name: copy files
         run: |
-          ls
-          mv Build-${{ matrix.targetPlatform }} docs
+          rm -r docs
+          cp -R build/WebGL docs
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
