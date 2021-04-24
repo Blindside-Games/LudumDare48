@@ -30,6 +30,14 @@ jobs:
       - name: copy files
         run: |
           rm -r docs
+          cd build 
+          ls 
+
+          cd WebGL 
+          ls
+          
+          cd ../..
+
           cp -R build/WebGL/. docs
 
           cd docs 
@@ -42,6 +50,7 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
+          git co builds
           git add docs
           git commit -m "new build"
           git push origin builds
