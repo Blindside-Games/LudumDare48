@@ -25,6 +25,11 @@ public class StatsController : MonoBehaviour, IAttackable
     {
         if (currentHealth <= 0)
         {
+            foreach (var transforms in transform)
+            {
+                Destroy(transform.gameObject);
+            }
+
             Destroy(this);
         }
     }

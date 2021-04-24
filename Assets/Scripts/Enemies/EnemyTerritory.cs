@@ -8,6 +8,7 @@ public class EnemyTerritory : MonoBehaviour
     private BoxCollider territory;
     private const int maxEnemies = 20;
     private List<GameObject> enemies;
+    private List<Transform> navPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class EnemyTerritory : MonoBehaviour
         territory = GetComponent<BoxCollider>();
 
         GetEnemiesInTerritory();
+        GetNavigationPoints();
         StartPatrols();
     }
 
@@ -48,7 +50,16 @@ public class EnemyTerritory : MonoBehaviour
         {
             var enemyBehaviour = enemy.GetComponent<BasicEnemy>();
 
-            enemyBehaviour.BeginPatrol();
+            enemyBehaviour.BeginPatrol(navPoints);
         }
     }
+
+    private void GetNavigationPoints()
+    {
+        navPoints = FindObjectsOfType<Collider>()
+        .Where(c => c.bounds.Intersects(territory.bounds) && c.tag.Equals("NavigationPoint"))
+        .Select(c => c.transform)
+        .ToList();
+    }
+
 }
