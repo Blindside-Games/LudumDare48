@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: a3dbec8c67ab354428e303108e65372e
+guid: 0ea91be4d132548fd8c8e9f8f8d55a5c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Accent_Red
+    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Trim_Grey
+    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Submarine_body
+    second: {fileID: 2100000, guid: 74cd8121406e44330a6a8173ec902f94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trim_Grey
+    second: {fileID: 2100000, guid: 0793ae47576ae49edb4a97be492956ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert31
+    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window
+    second: {fileID: 2100000, guid: b966639d6e31843b4bfc5825da62d10c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

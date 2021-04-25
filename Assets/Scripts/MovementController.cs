@@ -60,7 +60,7 @@ public class MovementController : MonoBehaviour
 
         if (direction.magnitude > 0)
         {
-            propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
+           // propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
         }
 
         rigidBody.position += direction * Time.deltaTime * speed;
