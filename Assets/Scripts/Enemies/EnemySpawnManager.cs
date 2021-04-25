@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject smallEnemyPrefab;
+    public GameObject[] bossPrefabs;
     public GameObject player;
+
+    private int maxNumberHenchmen = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +24,16 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void LevelChanged(int level)
     {
-        var enemy = Instantiate(enemyPrefab, player.transform.position - new Vector3(100, 100, 100), Quaternion.identity) as GameObject;
+        var henchmen = Random.Range(1, maxNumberHenchmen);
 
-        enemy.GetComponent<Enemy>().target = player;
+        for (int i = 0; i <= henchmen; i++)
+        {
+            var enemy = Instantiate(smallEnemyPrefab, player.transform.position - new Vector3(100 + 50 * i, 100, 100), Quaternion.identity) as GameObject;
+
+            enemy.GetComponent<Enemy>().target = player;
+        }
+
+        var boss = Instantiate(bossPrefabs[level - 1], player.transform.position - new Vector3(100, 100, 100), Quaternion.identity) as GameObject;
+        boss.GetComponent<Enemy>().target = player;
     }
 }

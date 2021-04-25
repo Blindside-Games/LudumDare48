@@ -12,9 +12,19 @@ public class StatsController : MonoBehaviour, IAttackable
 
     public UnityEvent GameOver;
 
+    public AudioSource impact;
+
+    public bool Invincible;
+
     public void Attack(AttackInfo attackInfo)
     {
+        if (Invincible)
+            return;
+
         currentHealth -= attackInfo.Damage;
+
+        impact.Play();
+
         Debug.Log(currentHealth);
     }
 

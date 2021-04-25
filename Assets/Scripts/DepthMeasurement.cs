@@ -9,11 +9,12 @@ public class DepthMeasurement : MonoBehaviour
     public GameObject player;
 
     float depth = 123f;
+    float startY;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        startY = player.transform.position.y;
     }
 
     // Update is called once per frame
@@ -26,6 +27,8 @@ public class DepthMeasurement : MonoBehaviour
         var toPosition = player.transform.position;
         var direction = toPosition - fromPosition;
 
+        Debug.DrawRay(fromPosition, direction, Color.red);
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit, 4000, 1 << 8))
         {
@@ -35,6 +38,6 @@ public class DepthMeasurement : MonoBehaviour
             }
         }
 
-        label.text = $"Depth: {(1020f - depth).ToString("n2")}m";
+        label.text = $"Depth: {(startY - depth).ToString("n2")}m";
     }
 }

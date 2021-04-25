@@ -81,6 +81,8 @@ public class AttackController : MonoBehaviour
     {
         var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
+        Debug.DrawRay(ray.origin, Camera.main.transform.forward * 100000, Color.yellow, 0.5f);
+
         if (Physics.Raycast(ray, out var hit, 200, 1 << 6))
         {
             var targetTransform = hit.transform;

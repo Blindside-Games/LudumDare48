@@ -17,8 +17,7 @@ public class Enemy : MonoBehaviour
     private float rateOfFire = 700f;
     private float interval, currentInterval = 0;
     private bool canFire = true;
-
-    public float Spread = 0.8f;
+    private float Spread = 0.5f;
 
     private AudioSource gunshot;
 
