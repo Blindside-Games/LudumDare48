@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class DepthMeasurement : MonoBehaviour
 {
     public Text label;
-    public GameObject floor;
+    public GameObject player;
 
-    float depth = 100f;
+    float depth = 123f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +20,19 @@ public class DepthMeasurement : MonoBehaviour
     void Update()
     {
         var fromPosition = transform.position;
-        var toPosition = floor.transform.position;
+        var toPosition = player.transform.position;
         var direction = toPosition - fromPosition;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit))
+        if (Physics.Raycast(transform.position, transform.up, out hit, 2000, 1 << 8))
         {
-            if (hit.collider != null && hit.collider.tag.Equals("Terrain"))
+            if (hit.collider != null && hit.collider.tag.Equals("Player"))
             {
                 depth = hit.distance;
             }
         }
 
-        label.text = $"Depth: {depth.ToString("n2")}m";
+
+        label.text = $"Depth: {(depth).ToString("n2")}m";
     }
 }

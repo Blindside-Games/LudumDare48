@@ -9,6 +9,8 @@ TagManager:
   - GunMuzzle
   - Bullet
   - NavigationPoint
+  - LevelTransition
+  - SubmarineModel
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Enemies
-  - 
-  - 
+  - Terrain
+  - Player
   - 
   - 
   - 

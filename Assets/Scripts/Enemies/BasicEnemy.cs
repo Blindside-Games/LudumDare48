@@ -7,12 +7,19 @@ public class BasicEnemy : MonoBehaviour
 {
     private int destPoint = 0;
     private Transform destination;
+    private List<Transform> navigationPoints;
+
+    public float MovementSpeedFactor = 2f;
+
+    private EnemyState state;
 
     // Start is called before the first frame update
     void Start()
     {
 
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -22,29 +29,67 @@ public class BasicEnemy : MonoBehaviour
             MoveToDestination();
         }
 
+        if (state == EnemyState.Pursuing)
+        {
+
+        }
+
+    }
+
+    public void SetPursueTarget(GameObject target)
+    {
+        destination = target.transform;
     }
 
     public void BeginPatrol(List<Transform> navPoints)
     {
-        if (navPoints.Count == 0)
+        navigationPoints = navPoints;
+
+        if (navigationPoints.Count == 0)
             return;
 
-        destination = navPoints[0];
+        destination = navigationPoints[destPoint];
+
+        state = EnemyState.Patrolling;
+    }
+
+    public void BeginPatrol()
+    {
+        if (navigationPoints.Count == 0)
+            return;
+
+        destination = navigationPoints[destPoint];
+
+        state = EnemyState.Patrolling;
+    }
 
 
+    private void SelectDestination()
+    {
+        if (state == EnemyState.Patrolling)
+        {
+            destPoint = Random.Range(0, navigationPoints.Count - 1);
+
+            if (navigationPoints.IndexOf(destination) == destPoint)
+                destPoint = (destPoint + 1) % navigationPoints.Count;
+
+            destination = navigationPoints[destPoint];
+        }
     }
 
     private void MoveToDestination()
     {
         var direction = destination.position - transform.position;
 
-        transform.position += direction * Time.deltaTime;
+        GetComponent<Rigidbody>().position += direction * Time.deltaTime / MovementSpeedFactor;
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag.Equals("Navigation point"))
+        if (col.tag.Equals("NavigationPoint"))
             Debug.Log("reached destination");
+
+        SelectDestination();
     }
 }
 
