@@ -9,6 +9,7 @@ TagManager:
   - GunMuzzle
   - Bullet
   - NavigationPoint
+  - LevelTransition
   layers:
   - Default
   - TransparentFX
