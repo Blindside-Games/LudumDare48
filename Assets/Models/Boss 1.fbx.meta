@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75f4d636d2b644126a20697b88634007
+guid: e4f765f96e4dc45c09c1f02493aaa9e6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,23 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert20
-    second: {fileID: 2100000, guid: 2a815bef07e52431fa8a4bfe51d7f6d9, type: 2}
+      name: Dark_Grey_Trim
+    second: {fileID: 2100000, guid: 0793ae47576ae49edb4a97be492956ec, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert28
-    second: {fileID: 2100000, guid: 8cdfdb82aa89b4ccbb677357c6c0190d, type: 2}
+      name: Light_grey
+    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert29
-    second: {fileID: 2100000, guid: 2a815bef07e52431fa8a4bfe51d7f6d9, type: 2}
+      name: Red_Trim
+    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert34
-    second: {fileID: 2100000, guid: 2a815bef07e52431fa8a4bfe51d7f6d9, type: 2}
+      name: Trim_Red
+    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window7
+    second: {fileID: 2100000, guid: b966639d6e31843b4bfc5825da62d10c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

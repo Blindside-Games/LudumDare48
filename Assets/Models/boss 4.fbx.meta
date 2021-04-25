@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a6aaf26d8e6c44e0ba91d3c5d54f1aa0
+guid: 656905074051943678ae136ae8116795
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,32 +7,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Accent_Red
-    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Default_Material
-    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Light_Trim_Grey
-    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Submarine_body
-    second: {fileID: 2100000, guid: 74cd8121406e44330a6a8173ec902f94, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Trim_Grey
+      name: Dark_Grey_Trim
     second: {fileID: 2100000, guid: 0793ae47576ae49edb4a97be492956ec, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: window
+      name: Light_grey
+    second: {fileID: 2100000, guid: dfdd2c832821642109c1b970fa7ec151, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Trim
+    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trim_Red
+    second: {fileID: 2100000, guid: c4739a4b0c1404b58af25ccc467f55c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window7
     second: {fileID: 2100000, guid: b966639d6e31843b4bfc5825da62d10c, type: 2}
   materials:
     materialImportMode: 2
