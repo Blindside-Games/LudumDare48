@@ -19,6 +19,9 @@ public class DepthMeasurement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+            return;
+
         var fromPosition = transform.position;
         var toPosition = player.transform.position;
         var direction = toPosition - fromPosition;

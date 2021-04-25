@@ -12,7 +12,7 @@ public class AttackController : MonoBehaviour
 
     private bool canFire = true;
 
-    public Text ammoLabel;
+    public Text ammoLabel, rateOfFireLabel;
     private SubmarineUpgradeData upgradeLevel;
     private AudioSource gunshot;
 
@@ -71,6 +71,9 @@ public class AttackController : MonoBehaviour
         upgradeLevel = GetComponent<SubmarineUpgradeManager>().CurrentUpgrade;
 
         interval = (60 / upgradeLevel.RoundsPerMinute) * 1000;
+
+        rateOfFireLabel.text = $"ROF: {upgradeLevel.RoundsPerMinute}";
+
         maxAmmo = currentAmmo = upgradeLevel.MagazineCapacity;
     }
 

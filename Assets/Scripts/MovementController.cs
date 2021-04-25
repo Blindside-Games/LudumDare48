@@ -74,7 +74,11 @@ public class MovementController : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        LevelChanged.Invoke(Convert.ToInt32(col.name.Last().ToString()));
+        if (col.CompareTag("LevelTransition"))
+        {
+            LevelChanged.Invoke(Convert.ToInt32(col.name.Last().ToString()));
+            col.gameObject.SetActive(false);
+        }
     }
 
     void OnCollisionEnter(Collision col)

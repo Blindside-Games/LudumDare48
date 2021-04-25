@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private float interval, currentInterval = 0;
     private bool canFire = true;
 
-    public float Spread = 0.001f;
+    public float Spread = 0.8f;
 
     private AudioSource gunshot;
 
@@ -37,6 +37,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void FixedUpdate()
+    {
+        if (destination != null)
+        {
+            MoveToDestination();
+        }
+
         if (target != null)
         {
             transform.LookAt(target.transform);
@@ -45,14 +55,6 @@ public class Enemy : MonoBehaviour
             {
                 FireAtTarget();
             }
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (destination != null)
-        {
-            MoveToDestination();
         }
     }
 
@@ -75,12 +77,12 @@ public class Enemy : MonoBehaviour
                 var randomY = Random.Range(-Spread, Spread);
                 var randomZ = Random.Range(-Spread, Spread);
 
-                var direction = (target.transform.position - transform.position);// + new Vector3(randomX, randomY, randomZ);
+                var direction = (target.transform.position - transform.position).normalized + new Vector3(randomX, randomY, randomZ);
 
-                Debug.DrawRay(transform.position, direction, Color.red, interval);
+                Debug.DrawRay(transform.position, direction * 170, Color.red, 0.5f);
 
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, direction, out hit, FollowDistance, 1 << 8))
+                if (Physics.Raycast(transform.position, direction, out hit, 170, 1 << 8))
                 {
                     hit.transform.gameObject.GetComponent<IAttackable>().Attack(new AttackInfo
                     {

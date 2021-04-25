@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StatsController : MonoBehaviour, IAttackable
 {
@@ -8,6 +9,8 @@ public class StatsController : MonoBehaviour, IAttackable
 
     [HideInInspector]
     public bool isDead = false;
+
+    public UnityEvent GameOver;
 
     public void Attack(AttackInfo attackInfo)
     {
@@ -26,12 +29,19 @@ public class StatsController : MonoBehaviour, IAttackable
     {
         if (currentHealth <= 0)
         {
-            foreach (var transforms in transform)
+            if (gameObject.CompareTag("Player"))
             {
-                Destroy(transform.gameObject);
+                GameOver.Invoke();
             }
+            else
+            {
+                foreach (var transforms in transform)
+                {
+                    Destroy(transform.gameObject);
+                }
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }
