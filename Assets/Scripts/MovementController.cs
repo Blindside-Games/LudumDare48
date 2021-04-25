@@ -16,6 +16,8 @@ public class MovementController : MonoBehaviour
 
     public UnityEvent<int> LevelChanged;
 
+    Vector3 direction = Vector3.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +33,20 @@ public class MovementController : MonoBehaviour
 
             rigidBody.AddForce(new Vector3(0, speed / 8, 0), ForceMode.Impulse);
         }
+
+        if (direction.magnitude > 0)
+        {
+            // propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
+        }
+
+        rigidBody.velocity += direction * Time.deltaTime * speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var input = new Vector3(Input.GetAxis("Horizontal"), yAxis, Input.GetAxis("Vertical"));
 
-        Vector3 direction = Vector3.zero;
+
         switch (Input.GetAxis("Horizontal"))
         {
             case 1:
@@ -62,17 +70,15 @@ public class MovementController : MonoBehaviour
 
             default: break;
         }
-
-        if (direction.magnitude > 0)
-        {
-            // propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
-        }
-
-        rigidBody.position += direction * Time.deltaTime * speed;
     }
 
     void OnTriggerEnter(Collider col)
     {
         LevelChanged.Invoke(Convert.ToInt32(col.name.Last().ToString()));
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log(col.transform.name);
     }
 }

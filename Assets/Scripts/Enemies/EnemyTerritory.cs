@@ -35,7 +35,7 @@ public class EnemyTerritory : MonoBehaviour
 
             enemies.ForEach((e) =>
             {
-                e.GetComponent<BasicEnemy>().SetPursueTarget(other.gameObject);
+                e.GetComponent<PatrolEnemy>().SetPursueTarget(other.gameObject);
             });
         }
     }
@@ -47,7 +47,7 @@ public class EnemyTerritory : MonoBehaviour
             Debug.Log($"{other.transform.name} exit");
             enemies.ForEach((e) =>
             {
-                e.GetComponent<BasicEnemy>().BeginPatrol();
+                e.GetComponent<PatrolEnemy>().BeginPatrol();
             });
         }
     }
@@ -64,7 +64,7 @@ public class EnemyTerritory : MonoBehaviour
     {
         foreach (var enemy in enemies)
         {
-            var enemyBehaviour = enemy.GetComponent<BasicEnemy>();
+            var enemyBehaviour = enemy.GetComponent<PatrolEnemy>();
 
             enemyBehaviour.BeginPatrol(navPoints);
         }

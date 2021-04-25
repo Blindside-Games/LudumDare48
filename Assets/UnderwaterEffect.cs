@@ -24,8 +24,26 @@ public class UnderwaterEffect : MonoBehaviour
     {
         Debug.Log(level);
 
-        var color = new Color(planeMaterial.color.r, planeMaterial.color.g, planeMaterial.color.b, level * 0.2f);
+        StartCoroutine(LerpPlaneAlpha(level));
+    }
 
-        planeMaterial.color = color;
+    private IEnumerator LerpPlaneAlpha(int level)
+    {
+        var elaspedTime = 0f;
+        var duration = 1f;
+        var startValue = planeMaterial.color.a;
+        var endValue = level * 0.2f;
+
+        while (elaspedTime < duration)
+        {
+            elaspedTime += Time.deltaTime;
+
+            var newAlpha = Mathf.Lerp(startValue, endValue, elaspedTime / duration);
+            var color = new Color(planeMaterial.color.r, planeMaterial.color.g, planeMaterial.color.b, newAlpha);
+
+            planeMaterial.color = color;
+
+            yield return null;
+        }
     }
 }

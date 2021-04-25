@@ -3,38 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicEnemy : MonoBehaviour
+public class PatrolEnemy : Enemy
 {
     private int destPoint = 0;
-    private Transform destination;
+
     private List<Transform> navigationPoints;
 
-    public float MovementSpeedFactor = 2f;
-
     private EnemyState state;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (destination != null)
-        {
-            MoveToDestination();
-        }
-
-        if (state == EnemyState.Pursuing)
-        {
-
-        }
-
-    }
 
     public void SetPursueTarget(GameObject target)
     {
@@ -63,7 +38,6 @@ public class BasicEnemy : MonoBehaviour
         state = EnemyState.Patrolling;
     }
 
-
     private void SelectDestination()
     {
         if (state == EnemyState.Patrolling)
@@ -75,13 +49,6 @@ public class BasicEnemy : MonoBehaviour
 
             destination = navigationPoints[destPoint];
         }
-    }
-
-    private void MoveToDestination()
-    {
-        var direction = destination.position - transform.position;
-
-        GetComponent<Rigidbody>().position += direction * Time.deltaTime / MovementSpeedFactor;
     }
 
     void OnTriggerEnter(Collider col)

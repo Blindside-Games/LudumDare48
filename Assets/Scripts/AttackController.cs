@@ -14,18 +14,13 @@ public class AttackController : MonoBehaviour
 
     public Text ammoLabel;
     private SubmarineUpgradeData upgradeLevel;
-
-    public GameObject BulletPrefab;
-    private GameObject muzzle;
-
-    public int bulletTravelSpeed = 100;
-
-    private List<GameObject> bulletPool = new List<GameObject>();
+    private AudioSource gunshot;
 
     // Start is called before the first frame update
     void Start()
     {
         ApplyUpgrade();
+        gunshot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +36,8 @@ public class AttackController : MonoBehaviour
                 {
                     Debug.Log("fire!");
                     FireBullet();
+
+                    gunshot.Play();
 
                     currentInterval = 0;
                     currentAmmo--;
@@ -75,8 +72,6 @@ public class AttackController : MonoBehaviour
 
         interval = (60 / upgradeLevel.RoundsPerMinute) * 1000;
         maxAmmo = currentAmmo = upgradeLevel.MagazineCapacity;
-
-        muzzle = transform.RecursiveFindByTag("GunMuzzle");
     }
 
     private void FireBullet()
