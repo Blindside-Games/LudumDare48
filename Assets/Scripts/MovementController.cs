@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MovementController : MonoBehaviour
 {
@@ -10,6 +13,8 @@ public class MovementController : MonoBehaviour
     private float yAxis = 0;
 
     private GameObject propeller;
+
+    public UnityEvent<int> LevelChanged;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +73,6 @@ public class MovementController : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.name);
+        LevelChanged.Invoke(Convert.ToInt32(col.name.Last().ToString()));
     }
 }

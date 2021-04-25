@@ -24,7 +24,7 @@ public class DepthMeasurement : MonoBehaviour
         var direction = toPosition - fromPosition;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.up, out hit, 2000, 1 << 8))
+        if (Physics.Raycast(transform.position, transform.up, out hit, 4000, 1 << 8))
         {
             if (hit.collider != null && hit.collider.tag.Equals("Player"))
             {
@@ -32,6 +32,7 @@ public class DepthMeasurement : MonoBehaviour
             }
         }
 
+        Debug.DrawRay(fromPosition, direction, Color.red);
 
         label.text = $"Depth: {(depth).ToString("n2")}m";
     }

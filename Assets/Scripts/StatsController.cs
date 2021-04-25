@@ -12,6 +12,7 @@ public class StatsController : MonoBehaviour, IAttackable
     public void Attack(AttackInfo attackInfo)
     {
         currentHealth -= attackInfo.Damage;
+        Debug.Log(currentHealth);
     }
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class StatsController : MonoBehaviour, IAttackable
                 Destroy(transform.gameObject);
             }
 
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
