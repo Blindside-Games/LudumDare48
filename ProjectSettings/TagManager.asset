@@ -11,6 +11,8 @@ TagManager:
   - NavigationPoint
   - LevelTransition
   - SubmarineModel
+  - Blip
+  - PickUp
   layers:
   - Default
   - TransparentFX
