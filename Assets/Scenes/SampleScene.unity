@@ -1301,7 +1301,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   impact: {fileID: 595705300}
-  Invincible: 1
+  Invincible: 0
   MaxHullDepth: 200
 --- !u!114 &595705297
 MonoBehaviour:
