@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bc6c5b816a88c4d8f8c082fa2ca2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 90
+  speed: 70.24
   propeller: {fileID: 511429301}
   LevelChanged:
     m_PersistentCalls:
