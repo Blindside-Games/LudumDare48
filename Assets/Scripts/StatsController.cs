@@ -16,6 +16,8 @@ public class StatsController : MonoBehaviour, IAttackable
 
     public bool Invincible;
 
+    public float MaxHullDepth = 200f;
+
     public void Attack(AttackInfo attackInfo)
     {
         if (Invincible)
@@ -53,5 +55,15 @@ public class StatsController : MonoBehaviour, IAttackable
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void ApplyHullUpgrade()
+    {
+        var upgrade = GetComponent<SubmarineUpgradeManager>().CurrentUpgrade;
+
+        if (upgrade.Type != UpgradeType.Hull)
+            return;
+
+        MaxHullDepth = upgrade.HullMaxDepth;
     }
 }

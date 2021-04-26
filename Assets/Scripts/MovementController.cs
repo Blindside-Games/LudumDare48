@@ -12,17 +12,26 @@ public class MovementController : MonoBehaviour
 
     private float yAxis = 0;
 
-    private GameObject propeller;
+    public GameObject propeller;
 
     public UnityEvent<int> LevelChanged;
 
+    public UnityEvent<int, Transform> SpawnUpgrades;
+
+    public UnityEvent Win;
+
     Vector3 direction = Vector3.zero;
+
+    private AudioSource movementSound;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        propeller = transform.RecursiveFind("Propeller");
+
+        movementSound = GetComponents<AudioSource>().FirstOrDefault(a => a.clip.name.Equals("driving-sound"));
+
+        SpawnUpgrades.Invoke(1, transform);
     }
 
     void FixedUpdate()
@@ -36,7 +45,12 @@ public class MovementController : MonoBehaviour
 
         if (direction.magnitude > 0)
         {
-            // propeller.transform.RotateAround(propeller.transform.position, Vector3.forward, 90 * Time.deltaTime);
+            if (!movementSound.isPlaying)
+            {
+                movementSound.Play();
+            }
+
+            propeller.transform.Rotate(Vector3.forward, 500f * Time.deltaTime);
         }
 
         rigidBody.velocity += direction * Time.deltaTime * speed;
@@ -46,6 +60,10 @@ public class MovementController : MonoBehaviour
     {
         var input = new Vector3(Input.GetAxis("Horizontal"), yAxis, Input.GetAxis("Vertical"));
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            direction = Vector3.zero;
+        }
 
         switch (Input.GetAxis("Horizontal"))
         {
@@ -76,13 +94,39 @@ public class MovementController : MonoBehaviour
     {
         if (col.CompareTag("LevelTransition"))
         {
-            LevelChanged.Invoke(Convert.ToInt32(col.name.Last().ToString()));
+            Vector3 toTarget = (col.gameObject.transform.position - transform.position).normalized;
+
+            var level = Convert.ToInt32(col.name.Last().ToString());
+
+            LevelChanged.Invoke(level);
+
+            var nextTrigger = GameObject.Find($"Level{level + 1}");
+
+            Debug.Log($"Spawning upgrades for level {level}");
+
+            SpawnUpgrades.Invoke(level, nextTrigger?.transform ?? null);
+
             col.gameObject.SetActive(false);
         }
-    }
 
-    void OnCollisionEnter(Collision col)
-    {
-        Debug.Log(col.transform.name);
+        if (col.CompareTag("Chest"))
+        {
+            if (col is SphereCollider)
+            {
+                Debug.Log("spawn final boss");
+
+                var bossSpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnManager>();
+
+                bossSpawner.SpawnBoss(4);
+
+                col.gameObject.GetComponent<SphereCollider>().enabled = false;
+            }
+
+            if (col is BoxCollider)
+            {
+                Debug.Log("you win");
+                Win.Invoke();
+            }
+        }
     }
 }

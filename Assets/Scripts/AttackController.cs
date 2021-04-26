@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,19 +15,26 @@ public class AttackController : MonoBehaviour
 
     public Text ammoLabel, rateOfFireLabel;
     private SubmarineUpgradeData upgradeLevel;
-    private AudioSource gunshot;
+    private AudioSource gunshot, reload;
+
+    bool reloading = false;
 
     // Start is called before the first frame update
     void Start()
     {
         ApplyUpgrade();
-        gunshot = GetComponent<AudioSource>();
+
+        var audioSources = GetComponents<AudioSource>();
+
+        gunshot = audioSources.First(a => a.clip.name.Equals("Gunshot"));
+
+        reload = audioSources.First(a => a.clip.name.Equals("reload"));
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && !reloading)
         {
             currentInterval += Time.deltaTime * 1000;
 
@@ -58,12 +66,18 @@ public class AttackController : MonoBehaviour
 
     private IEnumerator Reload()
     {
+        reloading = true;
+
         canFire = false;
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        reload.Play();
+
+        yield return new WaitForSecondsRealtime(1f);
 
         currentAmmo = maxAmmo;
         canFire = true;
+
+        reloading = false;
     }
 
     public void ApplyUpgrade()

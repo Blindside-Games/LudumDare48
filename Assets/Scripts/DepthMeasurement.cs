@@ -36,8 +36,19 @@ public class DepthMeasurement : MonoBehaviour
             {
                 depth = hit.distance;
             }
+
+            depth = startY - depth;
+            var player = GameObject.FindWithTag("Player");
+
+            if (depth >= player.GetComponent<StatsController>().MaxHullDepth)
+            {
+                player.GetComponent<IAttackable>().Attack(new AttackInfo
+                {
+                    Damage = 2 * Time.deltaTime
+                });
+            }
         }
 
-        label.text = $"Depth: {(startY - depth).ToString("n2")}m";
+        label.text = $"Depth: {depth.ToString("n2")}m";
     }
 }

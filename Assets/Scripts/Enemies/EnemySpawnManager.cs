@@ -24,7 +24,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void LevelChanged(int level)
     {
-        var henchmen = Random.Range(1, maxNumberHenchmen);
+        var henchmen = Random.Range(1, maxNumberHenchmen - 1);
 
         for (int i = 0; i <= henchmen; i++)
         {
@@ -33,7 +33,12 @@ public class EnemySpawnManager : MonoBehaviour
             enemy.GetComponent<Enemy>().target = player;
         }
 
-        var boss = Instantiate(bossPrefabs[level - 1], player.transform.position - new Vector3(100, 100, 100), Quaternion.identity) as GameObject;
+        SpawnBoss(level - 1);
+    }
+
+    public void SpawnBoss(int bossNumber)
+    {
+        var boss = Instantiate(bossPrefabs[bossNumber], player.transform.position - new Vector3(100, 100, 100), Quaternion.identity) as GameObject;
         boss.GetComponent<Enemy>().target = player;
     }
 }

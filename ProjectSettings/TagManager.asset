@@ -13,6 +13,8 @@ TagManager:
   - SubmarineModel
   - Blip
   - PickUp
+  - Chest
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

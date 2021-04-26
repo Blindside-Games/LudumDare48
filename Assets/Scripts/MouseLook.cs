@@ -29,7 +29,7 @@ public class MouseLook : MonoBehaviour
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()

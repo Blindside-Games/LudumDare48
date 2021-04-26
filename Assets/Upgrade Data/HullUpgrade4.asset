@@ -15,4 +15,4 @@ MonoBehaviour:
   Type: 0
   RoundsPerMinute: 0
   MagazineCapacity: 0
-  HullMaxDepth: 100
+  HullMaxDepth: 1000

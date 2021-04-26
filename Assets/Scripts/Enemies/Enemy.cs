@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
                 {
                     hit.transform.gameObject.GetComponent<IAttackable>().Attack(new AttackInfo
                     {
-                        Damage = 5
+                        Damage = 3
                     });
                 }
 

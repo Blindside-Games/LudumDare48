@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff382e269bc02f4b9f56848d2608002, type: 3}
   m_Name: GunUpgrade2
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   RoundsPerMinute: 1700
   MagazineCapacity: 180
   HullMaxDepth: 0

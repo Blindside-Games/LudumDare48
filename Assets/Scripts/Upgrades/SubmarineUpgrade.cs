@@ -5,15 +5,25 @@ using UnityEngine.Events;
 
 public class SubmarineUpgrade : MonoBehaviour
 {
-    public GameObject model;
+    public GameObject modelPrefab;
     public SubmarineUpgradeData upgradeData;
 
     public UnityEvent<SubmarineUpgradeData> Collected;
 
+    private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log($"Upgrade spawned with model {modelPrefab}");
 
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.Log("Player not found");
+            return;
+        }
     }
 
     // Update is called once per frame
@@ -26,19 +36,19 @@ public class SubmarineUpgrade : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider.transform.name);
-
         if (collider.tag.Equals("Player"))
             Collected.Invoke(upgradeData);
     }
 
     void OnCollisionEnter(Collision collider)
     {
-        Debug.Log(collider.transform.name);
-
         if (collider.transform.tag.Equals("Player"))
-            Collected.Invoke(upgradeData);
+        {
+            //Collected.Invoke(upgradeData);
 
-        gameObject.SetActive(false);
+            player.GetComponent<SubmarineUpgradeManager>().Collect(upgradeData);
+
+            gameObject.SetActive(false);
+        }
     }
 }
